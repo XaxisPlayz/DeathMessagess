@@ -1,8 +1,11 @@
 package me.xaxis.deathmessages;
 
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Level;
 
 public final class DeathMessages extends JavaPlugin {
 
@@ -10,7 +13,20 @@ public final class DeathMessages extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        if(getServer().getPluginManager().getPlugin("Vault") == null){
+            getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c&lDeathMessages couldn't find the plugin &6Vault&c!"));
+            getPluginLoader().disablePlugin(this);
+            return;
+        } else if (getServer().getPluginManager().getPlugin("PermissionsEx") == null){
+            getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c&lDeathMessages couldn't find the plugin &6PermissionsEx&c!"));
+            getPluginLoader().disablePlugin(this);
+            return;
+
+        }
+
         // Plugin startup logic
+        setupPerms();
         new OnDeath(this);
         saveDefaultConfig();
     }
