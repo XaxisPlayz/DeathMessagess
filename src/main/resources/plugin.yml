@@ -1,6 +1,6 @@
 name: DeathMessages
 version: '${project.version}'
-main: me.xaxis.deathmessages.Deathmessages
+main: me.xaxis.deathmessages.DeathMessages
 api-version: 1.19
 depend: [ Vault ]
 authors: [ Xaxis ]
