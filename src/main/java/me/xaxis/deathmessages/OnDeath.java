@@ -1,5 +1,6 @@
 package me.xaxis.deathmessages;
 
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,9 +25,27 @@ public class OnDeath implements Listener {
 
             String rank = plugin.getPerms().getPrimaryGroup(player);
 
-            if(rank.equalsIgnoreCase("default")) return;
+            if(player.getKiller() != null){
 
-            event.setDeathMessage(chat(rank + player.getName()));
+                Player killer = player.getKiller();
+
+                String killerRank = plugin.getPerms().getPrimaryGroup(killer);
+
+                if(event.getDeathMessage().contains("was shot by")){
+
+                    event.setDeathMessage(chat(killerRank + "&f" + killer.getName() + "&7 has shot " + rank + "&f" + player.getName()));
+
+                    return;
+
+                }
+
+                event.setDeathMessage(chat(killerRank + "&f" + killer.getName() + "&7 has killed " + rank + "&f" + player.getName()));
+
+                return;
+
+            }
+
+            event.setDeathMessage(null);
 
         }
 
