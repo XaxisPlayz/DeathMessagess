@@ -1,15 +1,15 @@
 package me.xaxis.deathmessages;
 
-import net.milkbowl.vault.permission.Permission;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
-public final class DeathMessages extends JavaPlugin {
+public final class DeathMessages  extends JavaPlugin{
 
-    private Permission perms = null;
+    private Chat chat = null;
 
     @Override
     public void onEnable() {
@@ -26,7 +26,7 @@ public final class DeathMessages extends JavaPlugin {
         }
 
         // Plugin startup logic
-        setupPerms();
+        setupChat();
         new OnDeath(this);
         saveDefaultConfig();
     }
@@ -36,14 +36,13 @@ public final class DeathMessages extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public void setupPerms(){
-        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+    public void setupChat(){
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
 
-        perms = rsp.getProvider();
+        chat = rsp.getProvider();
     }
 
-    public Permission getPerms(){
-        return perms;
+    public Chat getChat(){
+        return chat;
     }
-
 }

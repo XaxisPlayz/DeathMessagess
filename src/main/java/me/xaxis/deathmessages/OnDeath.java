@@ -23,13 +23,13 @@ public class OnDeath implements Listener {
 
             Player player = event.getEntity();
 
-            String rank = plugin.getPerms().getPrimaryGroup(player);
+            String rank = plugin.getChat().getPlayerPrefix(player) + plugin.getChat().getPlayerSuffix(player);
 
             if(player.getKiller() != null){
 
                 Player killer = player.getKiller();
 
-                String killerRank = plugin.getPerms().getPrimaryGroup(killer);
+                String killerRank = plugin.getChat().getPlayerPrefix(killer) + plugin.getChat().getPlayerSuffix(killer);
 
                 if(event.getDeathMessage().contains("was shot by")){
 
