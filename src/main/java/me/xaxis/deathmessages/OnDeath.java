@@ -1,5 +1,6 @@
 package me.xaxis.deathmessages;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,9 +24,15 @@ public class OnDeath implements Listener {
 
             String rank = plugin.getPerms().getPrimaryGroup(player);
 
-            event.setDeathMessage(rank + player.getName());
+            if(rank.equalsIgnoreCase("default")) return;
+
+            event.setDeathMessage(chat(rank + player.getName()));
 
         }
 
+    }
+
+    public String chat(String s){
+        return ChatColor.translateAlternateColorCodes('&', s);
     }
 }

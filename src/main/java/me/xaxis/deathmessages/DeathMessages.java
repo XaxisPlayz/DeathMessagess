@@ -15,11 +15,11 @@ public final class DeathMessages extends JavaPlugin {
     public void onEnable() {
 
         if(getServer().getPluginManager().getPlugin("Vault") == null){
-            getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c&lDeathMessages couldn't find the plugin &6Vault&c!"));
+            getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "DeathMessages couldn't find the plugin Vault!"));
             getPluginLoader().disablePlugin(this);
             return;
         } else if (getServer().getPluginManager().getPlugin("PermissionsEx") == null){
-            getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c&lDeathMessages couldn't find the plugin &6PermissionsEx&c!"));
+            getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "DeathMessages couldn't find the plugin PermissionsEx!"));
             getPluginLoader().disablePlugin(this);
             return;
 
